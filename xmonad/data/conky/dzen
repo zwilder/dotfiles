@@ -13,5 +13,5 @@ conky.text=
 ^i(/home/zwilder/.xmonad/data/icons/mem.xbm) ^fg(\#909090)$memperc%^fg() | \
 ^i(/home/zwilder/.xmonad/data/icons/bat_full_01.xbm) $battery_percent% | \
 ^i(/home/zwilder/.xmonad/data/icons/spkr_01.xbm) ${exec pamixer --get-volume} | \
-${time %a %d%b%y - %k:%M}  
+^ca(1, /home/zwilder/.scripts/calendar_popup.sh)${time %a %d%b%y %k:%M}^ca() 
 ]]

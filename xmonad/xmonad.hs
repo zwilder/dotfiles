@@ -9,7 +9,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Util.EZConfig(additionalKeys)
 
 myTerminal = "gnome-terminal"
--- myWorkspaces = ["1:Main", "2:Web", "3:VIM"]
+myWorkspaces = ["1:Main", "2:Web", "3", "4", "5"]
 myXMonadBar = "dzen2 -dock -p -ta l -x 0 -w 900"
 myStatusBar = "conky -c /home/zwilder/.xmonad/data/conky/dzen | dzen2 -dock -p -ta r -x 900 -w 800"
 
@@ -18,7 +18,7 @@ main = do
     dzenRightBar <- spawnPipe myStatusBar
     xmonad $ docks def
         { terminal              = myTerminal
-        -- , workspaces            = myWorkspaces
+        , workspaces            = myWorkspaces
         , logHook               = myLogHook dzenLeftBar
         , layoutHook            = avoidStruts $ layoutHook def
         , manageHook            = manageHook def <+> manageDocks
@@ -34,5 +34,14 @@ main = do
 myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ def
     { ppCurrent         =   dzenColor "#111111" "#A6A6A6" . pad
-    ,  ppOutput = hPutStrLn h
+    , ppSep             =   "  |  "
+    , ppTitle           =   shorten 70
+    , ppLayout          =   dzenColor "#A6A6A6" "#111111" .
+                            (\x -> case x of
+                                "Tall"            ->      "^i(/home/zwilder/.xmonad/data/icons/layout_tall.xbm)"
+                                "Mirror Tall"     ->      "^i(/home/zwilder/.xmonad/data/icons/layout_mirror_tall.xbm)"
+                                "Full"            ->      "^i(/home/zwilder/.xmonad/data/icons/layout_full.xbm)"
+                                _                 ->      x
+                            )
+    ,ppOutput = hPutStrLn h
     }
