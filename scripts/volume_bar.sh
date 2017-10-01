@@ -2,8 +2,8 @@
 
 level=$(pamixer --get-volume)
 pipe='/tmp/volpipe'
-dzen_args=( -tw 200 -h 25 -x 860 -y 20 -bg '#101010' )
-gdbar_args=( -w 180 -h 7 -fg '#859900' -bg '#404040' )
+dzen_args=( -tw 200 -h 25 -x 860 -y 20 -bg '#111111' )
+gdbar_args=( -w 180 -h 7 -fg '#859900' -bg '#A6A6A6' )
 
 if [[ ! -e "$pipe" ]]; then
     mkfifo "$pipe"
