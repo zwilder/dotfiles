@@ -9,9 +9,20 @@ total_run_times = 0
 
 conky.text=
 [[
-^i(/home/zwilder/.xmonad/data/icons/cpu.xbm) ^fg(\#909090)$cpu%^fg() | \
-^i(/home/zwilder/.xmonad/data/icons/mem.xbm) ^fg(\#909090)$memperc%^fg() | \
-^i(/home/zwilder/.xmonad/data/icons/bat_full_01.xbm) $battery_percent% | \
-^i(/home/zwilder/.xmonad/data/icons/spkr_01.xbm) ${exec pamixer --get-volume} | \
+^i(/home/zwilder/.xmonad/data/icons/cpu.xbm) \
+^fg(\#859900)\
+${if_match $cpu >= 66}^fg(\#DC322F)${endif}\
+${if_match $cpu >= 33}${if_match $cpu < 66}^fg(\#CB4B16)${endif}${endif}\
+$cpu%^fg() | \
+^i(/home/zwilder/.xmonad/data/icons/mem.xbm) \
+^fg(\#859900)\
+${if_match $memperc >= 66}^fg(\#DC322F)${endif}\
+${if_match $memperc >= 33}${if_match $cpu < 66}^fg(\#CB4B16)${endif}${endif}\
+$memperc%^fg() | \
+^i(/home/zwilder/.xmonad/data/icons/spkr_01.xbm) \
+^fg(\#859900)\
+${if_match ${exec pamixer --get-volume} >= 66}^fg(\#DC322F)${endif}\
+${if_match ${exec pamixer --get-volume} >= 33}${if_match ${exec pamixer --get-volume} < 66}^fg(\#CB4B16)${endif}${endif}\
+${exec pamixer --get-volume}^fg() | \
 ^ca(1, /home/zwilder/.scripts/calendar_popup.sh)${time %a %d%b%y %k:%M}^ca() 
 ]]
