@@ -11,7 +11,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 myTerminal = "gnome-terminal"
 myWorkspaces = ["1:Main", "2:Web", "3", "4", "5"]
 myXMonadBar = "dzen2 -dock -p -ta l -x 0 -w 900"
-myStatusBar = "conky -c /home/zwilder/.xmonad/data/conky/dzen | dzen2 -dock -p -ta r -x 900 -w 800"
+myStatusBar = "conky -c /home/zwilder/.xmonad/data/conky/dzen | dzen2 -dock -p -ta r -x 900 -w 1200"
 
 main = do
     dzenLeftBar <- spawnPipe myXMonadBar
@@ -22,13 +22,13 @@ main = do
         , logHook               = myLogHook dzenLeftBar
         , layoutHook            = avoidStruts $ layoutHook def
         , manageHook            = manageHook def <+> manageDocks
-        , modMask               = mod4Mask
+        -- , modMask               = mod4Mask
         , borderWidth           = 1
         , normalBorderColor     = "#000000"
         , focusedBorderColor    = "#A6A6A6"
         -- , focusedBorderColor    = "#CB4B16"
-} `additionalKeys` [ ((0, 0x1008FF13), spawn "pamixer -i 5 --allow-boost -u"),
-                     ((0, 0x1008FF11), spawn "pamixer -d 5")
+} `additionalKeys` [ ((0, 0x1008FF13), spawn "pamixer -i 5 --allow-boost -u; /home/zwilder/.scripts/volume_bar.sh"),
+                     ((0, 0x1008FF11), spawn "pamixer -d 5; /home/zwilder/.scripts/volume_bar.sh")
                    ]
 
 myLogHook :: Handle -> X ()

@@ -7,6 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# ZSH_THEME="agnoster"
 ZSH_THEME="eastwood"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -56,12 +57,13 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export DEFAULT_USER="zwilder"
 
+export GOPATH=$HOME/gopath
+export PATH=$GOPATH:$GOPATH/bin:$PATH
+export LANG=en_US.utf8
+export EDITOR='vim'
 # export MANPATH="/usr/local/man:$MANPATH"
-
-export DEFAULT_USER=zwilder
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -88,3 +90,5 @@ alias ls="ls -lh --color=auto --ignore='*.bak' --ignore='*.un~' -X"
 alias chromium="chromium &> /dev/null"
 alias pcmanfm="pcmanfm &> /dev/null"
 alias bm="bashmount"
+alias scrot -s="sleep 0.2; scrot -s"
+alias cloc="cloc --exclude-ext=sh,d,md"

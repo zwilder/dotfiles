@@ -11,29 +11,28 @@ else
   set backupext=.bak
 endif
 set history=50		" keep 50 lines of command line history
-set ruler	    	" show the cursor position all the time
-set showcmd	    	" display incomplete commands
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-set number	    	" line numbers
-syntax on	    	" syntax highlighting
+set number		" line numbers
+syntax on		" syntax highlighting
+set encoding=utf-8
 
-set wildignore+=*.o,*.swp,*/tmp/*,*.bak,*.zip  
-
-" Custom keybindings
-map <C-t> :NERDTreeToggle<CR>
-
-" Plugin Settings
-let g:multi_cursor_next_key='<C-d>'
-let NERDTreeIgnore = ['\.o$','\.bak$']
-
-" Tab Settings
 set tabstop=4		" existing tab is 4 spaces width
 set shiftwidth=4	" indenting with '>' inserts 4 spaces
 set expandtab		" tab indents 4 spaces
 
+set wildignore+=*.o,*.swp,*/tmp/*,*.bak,*.zip  
+map <C-t> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.o$','\.bak$']
+let g:multi_cursor_next_key='<C-d>'
+
+set mouse=a
 " Theme settings
-" set background=dark
-colorscheme molokai 
+set background=dark
+" colorscheme molokai 
+let g:solarized_termcolors=256
+colorscheme solarized
 set t_Co=256
 
 " Vundle Settings
@@ -45,5 +44,6 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tomtom/tcomment_vim'
 " Plugin 'terryma/vim-multiple-cursors'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 filetype plugin indent on    " required
